@@ -9,22 +9,23 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class CategoryService {
 
+  url : String = 'http://13.58.104.199:4000/';
   authToken: any;
   constructor(private http: HttpClient) { }
   addCategory(data){
     let headers = new HttpHeaders();
     headers.append('content-Type', 'application/json');
-    return this.http.post('category/addCategory', data, { headers: headers });
+    return this.http.post(this.url + 'category/addCategory', data, { headers: headers });
   }
   getAllCategory(){
-    return this.http.get('category/getAllCategory');
+    return this.http.get(this.url + 'category/getAllCategory');
   }
   removeCategory(id){
     let headers = new HttpHeaders();
     headers.append('content-Type', 'application/json');
-    return this.http.delete('category/removeCategory/'+ id);
+    return this.http.delete(this.url + 'category/removeCategory/'+ id);
   }
   getCategoryById(id){
-    return this.http.get('category/getCategoryById/' + id);
+    return this.http.get(this.url + 'category/getCategoryById/' + id);
   }
 }
