@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserService {
   authToken: any;
+  url : String = 'http://13.58.104.199:4000/';
   constructor(private http: HttpClient, private router:Router, private toastr: ToastrService) { }
   getToken(){
     return !!localStorage.getItem('id_token');
@@ -19,7 +20,7 @@ export class UserService {
   changepassword(data){
     let headers = new HttpHeaders();
     headers.append('content-Type', 'application/json');
-    return this.http.put('user/changepassword', data, { headers: headers });
+    return this.http.put(this.url + 'user/changepassword', data, { headers: headers });
   }
   logout(){
     localStorage.clear();
@@ -36,25 +37,25 @@ export class UserService {
   login(user) {
     let headers = new HttpHeaders();
     headers.append('content-Type', 'application/json');
-    return this.http.post('user/login', user, { headers: headers });
+    return this.http.post(this.url + 'user/login', user, { headers: headers });
   }
   updateLocation(data){
     let headers = new HttpHeaders();
     headers.append('content-Type', 'application/json');
-    return this.http.put('user/addLocation', data, { headers: headers });
+    return this.http.put(this.url + 'user/addLocation', data, { headers: headers });
   }
   getAllUser(){
-    return this.http.get('user/getUsers');
+    return this.http.get(this.url + 'user/getUsers');
   }
   getUserById(id){
-    return this.http.get('user/getUserById/' + id);
+    return this.http.get(this.url + 'user/getUserById/' + id);
   }
   addUser(data){
     let headers = new HttpHeaders();
     headers.append('content-Type', 'application/json');
-    return this.http.post('user/addUser', data, { headers: headers });
+    return this.http.post(this.url + 'user/addUser', data, { headers: headers });
   }
   getUsername(){
-    return this.http.get('user/getUsername');
+    return this.http.get(this.url + 'user/getUsername');
   }
 }
